@@ -1,20 +1,20 @@
 {
   "collection": "@nestjs/schematics",
-  "sourceRoot": "apps/nestjs-microservice/src",
+  "sourceRoot": "apps/api/src",
   "monorepo": true,
-  "root": "apps/nestjs-microservice",
+  "root": "apps/api",
   "compilerOptions": {
     "webpack": true,
-    "tsConfigPath": "apps/nestjs-microservice/tsconfig.app.json"
+    "tsConfigPath": "apps/api/tsconfig.app.json"
   },
   "projects": {
-    "nestjs-microservice": {
+    "api": {
       "type": "application",
-      "root": "apps/nestjs-microservice",
+      "root": "apps/api",
       "entryFile": "main",
-      "sourceRoot": "apps/nestjs-microservice/src",
+      "sourceRoot": "apps/api/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/nestjs-microservice/tsconfig.app.json"
+        "tsConfigPath": "apps/api/tsconfig.app.json"
       }
     },
     "blog": {
