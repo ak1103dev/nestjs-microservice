@@ -14,12 +14,14 @@ export class AppService {
     this.blogClient = ClientProxyFactory.create({
       transport: Transport.TCP,
       options: {
+        host: 'blog',
         port: 4000,
       },
     });
     this.userClient = ClientProxyFactory.create({
       transport: Transport.TCP,
       options: {
+        host: 'user',
         port: 4001,
       },
     });
