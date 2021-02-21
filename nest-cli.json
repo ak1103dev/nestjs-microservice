@@ -1,4 +1,30 @@
 {
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src"
+  "sourceRoot": "apps/nestjs-microservice/src",
+  "monorepo": true,
+  "root": "apps/nestjs-microservice",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/nestjs-microservice/tsconfig.app.json"
+  },
+  "projects": {
+    "nestjs-microservice": {
+      "type": "application",
+      "root": "apps/nestjs-microservice",
+      "entryFile": "main",
+      "sourceRoot": "apps/nestjs-microservice/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/nestjs-microservice/tsconfig.app.json"
+      }
+    },
+    "blog": {
+      "type": "application",
+      "root": "apps/blog",
+      "entryFile": "main",
+      "sourceRoot": "apps/blog/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/blog/tsconfig.app.json"
+      }
+    }
+  }
 }
