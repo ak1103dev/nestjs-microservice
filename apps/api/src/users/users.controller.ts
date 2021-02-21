@@ -1,15 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 import { ApiTags } from '@nestjs/swagger';
-import { AppService } from '../app.service';
 
 @Controller('users')
 @ApiTags('users')
 export class UsersController {
-  constructor(private readonly appService: AppService) {}
+  constructor(@Inject('USER_SERVICE') private readonly userClient: ClientProxy) {}
 
   @Get()
-  async findUser(): Promise<any> {
-    const users = await this.appService.findUser();
-    return users;
+  async find(): Promise<any> {
+    return this.userClient.send<string, string>('find', '').toPromise();
   }
 }

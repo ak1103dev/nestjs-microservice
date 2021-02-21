@@ -1,15 +1,14 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 import { ApiTags } from '@nestjs/swagger';
-import { AppService } from '../app.service';
 
 @Controller('blogs')
 @ApiTags('blogs')
 export class BlogsController {
-  constructor(private readonly appService: AppService) {}
+  constructor(@Inject('BLOG_SERVICE') private readonly blogClient: ClientProxy) {}
 
   @Get()
   async getHello(): Promise<string> {
-    const helloValue = await this.appService.getHello();
-    return helloValue;
+    return this.blogClient.send<string, string>('getHello', 'Jame Bond').toPromise();
   }
 }
