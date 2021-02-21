@@ -6,14 +6,10 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  async getHello(): Promise<string> {
-    const helloValue = await this.appService.getHello();
-    return helloValue;
-  }
-
-  @Get('users')
-  async findUser(): Promise<any> {
-    const users = await this.appService.findUser();
-    return users;
+  welcome(): any {
+    return {
+      message: 'Welcome to API',
+      date: new Date(),
+    }
   }
 }
