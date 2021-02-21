@@ -7,18 +7,29 @@ import {
 
 @Injectable()
 export class AppService {
-  private client: ClientProxy;
+  private blogClient: ClientProxy;
+  private userClient: ClientProxy;
 
   constructor() {
-    this.client = ClientProxyFactory.create({
+    this.blogClient = ClientProxyFactory.create({
       transport: Transport.TCP,
       options: {
         port: 4000,
       },
     });
+    this.userClient = ClientProxyFactory.create({
+      transport: Transport.TCP,
+      options: {
+        port: 4001,
+      },
+    });
   }
 
   public getHello(): Promise<string> {
-    return this.client.send<string, string>('getHello', 'Michael').toPromise();
+    return this.blogClient.send<string, string>('getHello', 'Michael').toPromise();
+  }
+
+  public findUser(): Promise<any> {
+    return this.userClient.send<string, string>('find', '').toPromise();
   }
 }

@@ -10,4 +10,10 @@ export class AppController {
     const helloValue = await this.appService.getHello();
     return helloValue;
   }
+
+  @Get('users')
+  async findUser(): Promise<any> {
+    const users = await this.appService.findUser();
+    return users;
+  }
 }
